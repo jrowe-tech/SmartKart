@@ -6,6 +6,7 @@ def stringToBytes(data):
 
 def ints_to_bytes(x: int, y: int) -> bytes:
     return (x | y).to_bytes(1, 'big')
+
 #SEND BYTE:
 # Serial.write(int & 0xFF)
 # byte = (throttle(int) | steering(int))
