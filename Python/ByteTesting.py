@@ -1,11 +1,16 @@
 from pynput import keyboard
-
+import sys
+import pyfirmata
 def stringToBytes(data):
     print(bytearray(data.encode('utf-8'))[1])
 
 
 def ints_to_bytes(x: int, y: int) -> bytes:
     return (x | y).to_bytes(1, 'big')
+
+st = ints_to_bytes(int(0.01 * 100), 0)
+print(int(1.45 * 100))
+print(f"St: {st}")
 
 #SEND BYTE:
 # Serial.write(int & 0xFF)
@@ -127,4 +132,10 @@ class ArduinoDriver:
             self.releaseControls[finalKey]()
 
 
-driver = ArduinoDriver()
+# driver = ArduinoDriver()
+
+def iterateIntBytes(numSet: int) -> None:
+    """ Giving Up Time """
+    for x in range(numSet+1):
+        print(f"Character Version: {ints_to_bytes(x, 0)}")
+

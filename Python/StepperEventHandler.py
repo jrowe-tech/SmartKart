@@ -5,25 +5,22 @@ import os
 from time import sleep as s
 from pynput import keyboard
 
-
 class ArduinoDriver:
     def __init__(self):
 
         # Setup Keyboard Inputs:
         self.activeKey = None
         self.active = False
-        self.speed = 0.00000
-        self.maxSteeringAngle = 45
-        self.deltaSpeed = 0.0500
-        self.timeStep = 0.0
+        self.speed = 0
+        self.timeStep = 0.01
         self.releaseControls = {"a": lambda: self.AdjustDirection("N", "L"),
                                 "key.left": lambda: self.AdjustDirection("N", "L"),
                                 "d": lambda: self.AdjustDirection("N", "R"),
                                 "key.right": lambda: self.AdjustDirection("N", "R"),
-                                # "w": lambda: self.AdjustSpeed("A", "B"),
-                                # "key.up": lambda: self.AdjustSpeed("A", "B"),
-                                # "s": lambda: self.AdjustSpeed("A", "C"),
-                                # "key.down": lambda: self.AdjustSpeed("A", "C")
+                                "w": lambda: self.AdjustSpeed(0, 100),
+                                "key.up": lambda: self.AdjustSpeed(0, 100),
+                                "s": lambda: self.AdjustSpeed(0, -100),
+                                "key.down": lambda: self.AdjustSpeed(0, -100)
                                 }
 
         self.keyControls = {"key.escape": lambda: self.SetActive(False),
@@ -39,12 +36,12 @@ class ArduinoDriver:
                             "key.enter": lambda: self.SetActive()}
 
         # Reset Throttle and Steering
-        self.direction = "N"
-        self.speed = 0.000000
+        self.direction = 0
+        self.speed = 0
         self.readValues = ""
 
         # Start Serial Driver
-        # self.serialDriver = serialDriver(200)
+        self.serialDriver = serialDriver(200)
 
         try:
 
@@ -64,20 +61,22 @@ class ArduinoDriver:
                 Up/Down Arrows For Throttling""")
 
             self.active = False
+
             while True:
+
                 if self.active:
-                    # Write Bound Pins And Commands Here
-                    # self.board.sp.write(loops.to_bytes(3, 'big'))
-                    # board.digital[13].write(self.keyBind)
-                    # print(f"Throttle: {self.direction}\nSteering:{self.speed}")
-                    # print(f"Throttle: {self.direction}\nSteering:{self.speed}")
-                    print(f"Debug Speed: {self.speed}\nDebug Direction: {self.direction}")
+                    #Step 1: Update Spee
+
+                    # Write 2 Bytes To Arduino
+
+                    self.serialDriver.sendValue(self.int2Bytes(int(byteSpeed * 100)))
+                    print(f"Int Value: {int.from_bytes(self.serialDriver.readValue(), 'big')}")
                     # self.serialDriver.sendValue(self.direction.encode('utf-8'))
-                    # self.serialDriver.sendValue(self.direction.encode('utf-8'))
-                    # os.system('cls')
+                    os.system('cls')
                     loops += 1
                 s(self.timeStep)
-        except KeyboardInterrupt:
+        except Exception as e:
+            print(f"Exception Occurred: {e}")
             print("Interrupted Arduino Stream")
         finally:
             print("EXITING PYTHON APPLICATION")
@@ -90,8 +89,8 @@ class ArduinoDriver:
         self.board.sp.write(msg)
 
     def SetActive(self, state=None):
-        self.direction = "N"
-        self.speed = 0.00000000
+        self.direction = 0
+        self.speed = 0
         if state:
             if self.active == state:
                 return
@@ -103,7 +102,7 @@ class ArduinoDriver:
 
         # Fix Null-Overriding
         if vIN == self.speed or vIN is None:
-            self.speed = max(0.0000, min(self.speed + vOUT, 1.0000))
+            self.speed = vOUT
 
     def AdjustDirection(self, vOUT, vIN=None):
 
@@ -111,6 +110,9 @@ class ArduinoDriver:
         # #Fix Null-Overriding
         if vIN == self.direction or vIN is None:
             self.direction = vOUT
+
+    def int2Bytes(self, x):
+        return (x | 0).to_bytes(1, "big")
 
     def key_press(self, key):
         finalKey = str(key).replace("'", "").lower()
