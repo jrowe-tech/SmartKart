@@ -2,7 +2,7 @@ import serial.tools.list_ports_windows as ports
 import serial
 
 class Driver:
-    def __init__(self, buffer):
+    def __init__(self, baud, buffer):
         self.comports = []
         print("\nOPEN COMPORTS:")
         for port in ports.comports():
@@ -14,7 +14,7 @@ class Driver:
             raise AttributeError
 
         self.serial = serial.Serial(timeout=0.01)
-        self.serial.baudrate = 115200
+        self.serial.baudrate = baud
         self.serial.port = self.portID
         self.serial.open()
         self.bufferSize = buffer
@@ -36,12 +36,19 @@ class Driver:
     def readLine(self):
         self.serial.flushInput()
         self.serial.flushOutput()
-        return [byte for byte in self.serial.readline() if
-                len(self.serial.readline()) < self.maxReadLength]
+        # return [byte for byte in self.serial.readline() if
+        #        len(self.serial.readline()) < self.maxReadLength]
+        return "Give Up"
 
     def startSend(self):
         self.serial.write(0xCC)
 
+    def closePort(self):
+        self.serial.flush()
+        self.serial.cancel_read()
+        self.serial.cancel_write()
+        self.serial.close()
+
 if __name__ == "main":
-    driver = Driver()
+    driver = Driver(115200, 200)
 
