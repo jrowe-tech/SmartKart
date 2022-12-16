@@ -1,12 +1,13 @@
-import serial_driver as driver
+from serial_driver import Driver
 from time import sleep as s
+
 
 from threading import Thread
 
 class Pipe:
     def __init__(self):
         # Set Serial Driver and port data
-        self.port = driver.Driver(115200, 200)
+        self.port = Driver(115200, 200)
         self.data = None
         self.dataCount = 0
         self.switchStates = {"N", "L", "R", "B"}
@@ -15,28 +16,8 @@ class Pipe:
         self.polarity = 0
         self.steps = 0
 
-        thread = Thread(target=self., daemon=True)
+        thread = Thread(target=self.writeSerial, daemon=True)
         thread.start()
-
-        # Start Update Loop
-        self.writeSerial(0.0001)
-
-        try:
-            pass
-
-        except KeyboardInterrupt:
-            print("Interrupting Arduino Stream")
-        except Exception as e:
-            print(f"Other Exception Occurred: {e}")
-        finally:
-            # Send Custom Character Codes For Debugging
-            # self.port.sendValue(self.processInt(127))
-            # self.port.sendValue(self.processInt(0))
-            # self.port.closePort()
-            pass
-
-        cw = True
-        s(5)
 
     def processInt(self, x: int) -> bytes:
         return x.to_bytes(1, "big")
@@ -50,7 +31,7 @@ class Pipe:
 
         return speedByte
 
-    def writeSerial(self, tick: float):
+    def writeSerial(self):
         cw = True
         while True:
 
@@ -74,9 +55,6 @@ class Pipe:
                 self.currentSteps = self.decompileBytesLeft(self.data[1:4])
                 # print(f"Arduino Steps: {currentSteps}")
                 self.dataCount += 1
-            # print("Amount Of Viable Data Received", self.dataCount)
-
-            # s(tick)
 
     def decompileBytesLeft(self, data: list) -> int:
         count = 0
@@ -89,7 +67,3 @@ class Pipe:
             self.speed = int(input("Add New Speed Here -> (0-99) "))
             self.polarity = int(input("Which Direction (0 / 1) "))
             print(f"Current Step Count: {self.currentSteps}")
-
-
-
-pipe = Pipe()

@@ -51,6 +51,3 @@ class Driver:
         self.serial.cancel_write()
         self.serial.close()
 
-if __name__ == "main":
-    driver = Driver(115200, 200)
-
