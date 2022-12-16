@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a918e64-7b10-4ae3-9c5b-a80c03e68158" name="Changes" comment="Serial Driver Modified For Stepper Event Handlers (For&#10;BalanceBot project).">
+    <list default="true" id="7a918e64-7b10-4ae3-9c5b-a80c03e68158" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Python/pySerialTraceback.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python/ReadSpamSerialLines.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/ReadSpamSerialLines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/SendInt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/SendInt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python/serial_driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/serial_driver.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670957618891</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Serial Driver Modified For Stepper Event Handlers (For&#10;BalanceBot project).">
+      <created>1671042809343</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671042809353</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

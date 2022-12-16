@@ -13,7 +13,7 @@ class Driver:
         if self.portID not in self.comports:
             raise AttributeError
 
-        self.serial = serial.Serial(timeout=0.01)
+        self.serial = serial.Serial(timeout=0.0001)
         self.serial.baudrate = baud
         self.serial.port = self.portID
         self.serial.open()
@@ -31,14 +31,16 @@ class Driver:
     def readValue(self):
         self.serial.flushInput()
         self.serial.flushOutput()
+        self.serial.flush()
         return self.serial.read()
 
     def readLine(self):
+        data = self.serial.readline()
         self.serial.flushInput()
         self.serial.flushOutput()
-        # return [byte for byte in self.serial.readline() if
-        #        len(self.serial.readline()) < self.maxReadLength]
-        return "Give Up"
+        self.serial.flush()
+        return [byte for byte in data if len(data) <= 4 and
+                data is not None]
 
     def startSend(self):
         self.serial.write(0xCC)

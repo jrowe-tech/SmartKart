@@ -1,21 +1,28 @@
 import serial_driver as driver
 from time import sleep as s
 
-# We do a little threading
 from threading import Thread
-
-
-# DO NOT SEND 127 OR 255 STEPS
 
 class Pipe:
     def __init__(self):
+        # Set Serial Driver and port data
         self.port = driver.Driver(115200, 200)
+        self.data = None
+        self.dataCount = 0
+        self.switchStates = {"N", "L", "R", "B"}
+        self.speed = 60
+        self.currentSteps = 0
+        self.polarity = 0
+        self.steps = 0
+
+        thread = Thread(target=self., daemon=True)
+        thread.start()
+
+        # Start Update Loop
+        self.writeSerial(0.0001)
 
         try:
-            s(2)
-            self.writeSerial(0.01)
-            self.readingThread = Thread(target=self.readSerial, args=[0.01], daemon=True)
-            self.readingThread.start()
+            pass
 
         except KeyboardInterrupt:
             print("Interrupting Arduino Stream")
@@ -43,33 +50,46 @@ class Pipe:
 
         return speedByte
 
-    def readSerial(self, tick: float):
-        while True:
-            newData = self.port.readLine()
-            if len(newData) > 0:
-                data = newData
-                print(f"New Data Received: {data}")
-            s(tick)
-
     def writeSerial(self, tick: float):
         cw = True
         while True:
-            speedInt = self.compileSpeedByte(50, True)
 
-            steps = 1
+            # Keep Speed Between 0 - 100 -> 255 Reset Override
 
-            self.port.sendValue(self.processInt(speedInt))
-            self.port.sendValue(self.processInt(steps))
+            # Recommended: Steps From 20 - 100 -> Don't go above ):
+            self.steps = 50
 
-            data = self.port.readLine()
+            # Polarity -> Licherally Just Set 0 -> CW 1-> CCW
+            polarity = 1
 
-            if len(data) > 3:
-                print(f"Read Data: {data}")
-                print(f"Limit Switch State: {chr(data[0])}")
-                currentSteps = (data[1] << 16) + (data[2] << 8) + data[3]
-                print(f"Current Arduino Step Count: {currentSteps}")
+            self.port.sendValue(self.processInt(self.speed))
+            self.port.sendValue(self.processInt(self.steps))
+            self.port.sendValue(self.processInt(self.polarity))
 
-            s(0.2)
+            self.data = self.port.readLine()
+
+            if len(self.data) == 4 and chr(self.data[0]) in self.switchStates:
+                # print(f"Read Data: {self.data}")
+                # print(f"Limit Switch State: {chr(self.data[0])}")
+                self.currentSteps = self.decompileBytesLeft(self.data[1:4])
+                # print(f"Arduino Steps: {currentSteps}")
+                self.dataCount += 1
+            # print("Amount Of Viable Data Received", self.dataCount)
+
+            # s(tick)
+
+    def decompileBytesLeft(self, data: list) -> int:
+        count = 0
+        for i in range(len(data)):
+            count += data[-(i + 1)] << (8 * i)
+        return count
+
+    def inputThread(self):
+        while True:
+            self.speed = int(input("Add New Speed Here -> (0-99) "))
+            self.polarity = int(input("Which Direction (0 / 1) "))
+            print(f"Current Step Count: {self.currentSteps}")
+
 
 
 pipe = Pipe()
