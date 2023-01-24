@@ -11,7 +11,7 @@ def getRandom(min: int, max: int) -> int:
 
 def createTestData(min, max, count):
     for _ in range(count):
-        newVoltage = getRandom(min, max) * conversionFactor
+        newVoltage = getRandom(min, max) * conversi--onFactor
         sampleData.append(newVoltage)
 
 

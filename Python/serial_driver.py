@@ -1,8 +1,21 @@
 import serial.tools.list_ports_windows as ports
 import serial
 
+
 class Driver:
-    def __init__(self, baud, buffer):
+    """
+    Arduino Serial Port Driver
+
+    Prompts for user's input to find serial port.
+    Automatically takes care of buffer cleaning,
+    data filtration, and time scaling.
+
+    int baud: Baud rate of serial port (often 9600 / 115200)
+
+    int buffer: Output buffer size. Buffer automatically
+    clears after the max data is reached.
+    """
+    def __init__(self, baud: int = 115200, buffer: int = 200):
         self.comports = []
         print("\nOPEN COMPORTS:")
         for port in ports.comports():
@@ -11,7 +24,7 @@ class Driver:
 
         self.portID = "COM" + input("\nCHOOSE A PORT: COM")
         if self.portID not in self.comports:
-            raise AttributeError
+            raise AttributeError("Comport Number Not In Detected Comports!")
 
         self.serial = serial.Serial(timeout=0.0001)
         self.serial.baudrate = baud

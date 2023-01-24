@@ -91,7 +91,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 print("\n Neural Network is Loaded \n")
 
-max_motor_speed = 80
+max_motor_speed = 100
 
 with mp_pose.Pose(
         min_detection_confidence=0.5,
@@ -138,13 +138,16 @@ with mp_pose.Pose(
             cv2.ellipse(image, (ShAvgx, ShAvgy), (4, 4), 0, 0, 360, (0, 255, 0), 4)
 
             midpoint = 640
+            min_pixels = 10
             distance_from_center = (abs(ShAvgx - 640)) / 180
             distance_from_center = distance_from_center * (180 / 640)
             motor_speed = round(max_motor_speed * distance_from_center)
 
+
             num_steps = round(motor_speed / 10)
 
-            pipe.steps = 5
+
+            pipe.steps = num_steps
             pipe.speed = motor_speed
 
             if ShAvgx > 640:
