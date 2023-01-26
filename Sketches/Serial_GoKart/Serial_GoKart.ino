@@ -7,6 +7,7 @@
 
 int received = 0;
 bool newData = false;
+int kartSpeed = 0;
 
 void setup() {
   Serial.begin(115200);
@@ -17,23 +18,25 @@ void setup() {
 
   analogWrite(PWMPin, LOW);
   digitalWrite(LED, LOW);
+
+  kartSpeed = 0;
 }
 
 void receiveData() {
   if (Serial.available() > 0) {
     received = Serial.read();
-    digitalWrite(Interrupt_LED, HIGH);
+    //digitalWrite(LED, HIGH);
     newData = true;
   }
   else{
-    digitalWrite(Interrupt_LED, LOW);
+    digitalWrite(LED, LOW);
   }
 }
 
-void processData() {
+int processData() {
   if (newData) {
     kartSpeed = received;
-    newData = False;
+    newData = false;
 
     digitalWrite(LED, HIGH);
   }
@@ -53,4 +56,7 @@ void loop() {
   //Send And Receive Data
   receiveData();
   analogWrite(PWMPin, processData());
+  if (kartSpeed > 0 || newData) {
+    digitalWrite(LED, HIGH);
+  }
 }

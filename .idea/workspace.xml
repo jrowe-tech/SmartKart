@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a918e64-7b10-4ae3-9c5b-a80c03e68158" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Python/serial_speed_driver.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sketches/Serial_GoKart/Serial_GoKart.ino" afterDir="false" />
+    <list default="true" id="7a918e64-7b10-4ae3-9c5b-a80c03e68158" name="Changes" comment="Integrated real-time speed controller for RC Arduino circuit w/Razor Ground Force Drifter Go-Kart override controls.">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/MediapipePySerial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/MediapipePySerial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/TestAverageDeviation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/TestAverageDeviation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/serial_driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/serial_driver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sketches/Serial_LEDMATRIX_TEST/Serial_LEDMATRIX_TEST.ino" beforeDir="false" afterPath="$PROJECT_DIR$/Sketches/Serial_LEDMATRIX_TEST/Serial_LEDMATRIX_TEST.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python/serial_speed_driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/serial_speed_driver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sketches/Serial_GoKart/Serial_GoKart.ino" beforeDir="false" afterPath="$PROJECT_DIR$/Sketches/Serial_GoKart/Serial_GoKart.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +36,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jrowe/OneDrive/Desktop/Programs/Python/Other/AI/Blood_Splatter_Detection&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jrowe/OneDrive/Desktop/Programs/Arduino/SmartKart&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
@@ -133,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671168903519</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Integrated real-time speed controller for RC Arduino circuit w/Razor Ground Force Drifter Go-Kart override controls.">
+      <created>1674598156342</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1674598156342</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -142,6 +147,7 @@
     <MESSAGE value="Serial Driver Modified For Stepper Event Handlers (For&#10;BalanceBot project)." />
     <MESSAGE value="Finalized custom serial driver code" />
     <MESSAGE value="Integrated Pyserial Custom Overrides With Mediapipe PID Tracking (:" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrated Pyserial Custom Overrides With Mediapipe PID Tracking (:" />
+    <MESSAGE value="Integrated real-time speed controller for RC Arduino circuit w/Razor Ground Force Drifter Go-Kart override controls." />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrated real-time speed controller for RC Arduino circuit w/Razor Ground Force Drifter Go-Kart override controls." />
   </component>
 </project>

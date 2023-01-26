@@ -15,21 +15,21 @@ class ArduinoDriver:
         self.speed = 0
         self.timeStep = 0.01
         self.releaseControls = {
-            "1": 0,
-            "2": 0,
-            "3": 0,
-            "4": 0,
-            "5": 0
+            "1": lambda: self.adjustSpeed(0),
+            "2": lambda: self.adjustSpeed(0),
+            "3": lambda: self.adjustSpeed(0),
+            "4": lambda: self.adjustSpeed(0),
+            "5": lambda: self.adjustSpeed(0)
         }
 
         self.keyControls = {
-            "1": 20,
-            "2": 40,
-            "3": 60,
-            "4": 80,
-            "5": 100,
-            "key.enter": self.setActive(True),
-            "key.escape": self.setActive(False)
+            "1": lambda: self.adjustSpeed(20),
+            "2": lambda: self.adjustSpeed(40),
+            "3": lambda: self.adjustSpeed(60),
+            "4": lambda: self.adjustSpeed(80),
+            "5": lambda: self.adjustSpeed(100),
+            "key.enter": lambda: self.setActive(True),
+            "key.escape": lambda: self.setActive(False)
         }
 
         # Reset Throttle Value
@@ -37,7 +37,7 @@ class ArduinoDriver:
         self.readValues = ""
 
         # Start Serial Driver
-        self.serialDriver = serialDriver(200)
+        self.serialDriver = serialDriver(baud=115200, buffer=200)
 
         try:
 
@@ -59,10 +59,13 @@ class ArduinoDriver:
             while True:
 
                 if self.active:
-                    # Write Speed Int To Arduino
-                    self.serialDriver.sendValue(self.int2Bytes(self.speed))
+                    # Clamp Speed Value to Int 0-100
 
-                    os.system('cls')
+                    # Write Speed Int To Arduino
+                    print(f"Current Speed: {self.speed}")
+                    self.serialDriver.sendValue(self.int2Bytes(20))
+
+                    # os.system('cls')
                     loops += 1
 
                 s(self.timeStep)
@@ -92,12 +95,14 @@ class ArduinoDriver:
     def key_press(self, key):
         finalKey = str(key).replace("'", "").lower()
         if finalKey in self.keyControls.keys():
-            self.keyControls[finalKey]()
+            if finalKey is not None:
+                self.keyControls[str(finalKey)]()
 
     def key_release(self, key):
         finalKey = str(key).replace("'", "").lower()
         if finalKey in self.releaseControls.keys():
-            self.releaseControls[finalKey]()
+            if finalKey is not None:
+                self.releaseControls[str(finalKey)]()
 
     @staticmethod
     def int2Bytes(x):
