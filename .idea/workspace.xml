@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a918e64-7b10-4ae3-9c5b-a80c03e68158" name="Changes" comment="Integrated real-time speed controller for RC Arduino circuit w/Razor Ground Force Drifter Go-Kart override controls.">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+    <list default="true" id="7a918e64-7b10-4ae3-9c5b-a80c03e68158" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SmartKart.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SmartKart.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/serial_speed_driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/serial_speed_driver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sketches/Serial_GoKart/Serial_GoKart.ino" beforeDir="false" afterPath="$PROJECT_DIR$/Sketches/Serial_GoKart/Serial_GoKart.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +22,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Python/MediapipePySerial.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/readme.txt" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -32,14 +33,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jrowe/OneDrive/Desktop/Programs/Arduino/SmartKart&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/jrowe/OneDrive/Desktop/Programs/SmartKart",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jrowe\OneDrive\Desktop\Programs\Arduino\SmartKart\Python" />
@@ -138,7 +139,21 @@
       <option name="project" value="LOCAL" />
       <updated>1674598156342</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added .gitignore with sensitive information.">
+      <created>1674759444990</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1674759444990</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added .gitignore with sensitive information.">
+      <created>1675175640162</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1675175640162</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -148,6 +163,7 @@
     <MESSAGE value="Finalized custom serial driver code" />
     <MESSAGE value="Integrated Pyserial Custom Overrides With Mediapipe PID Tracking (:" />
     <MESSAGE value="Integrated real-time speed controller for RC Arduino circuit w/Razor Ground Force Drifter Go-Kart override controls." />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrated real-time speed controller for RC Arduino circuit w/Razor Ground Force Drifter Go-Kart override controls." />
+    <MESSAGE value="Added .gitignore with sensitive information." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added .gitignore with sensitive information." />
   </component>
 </project>
