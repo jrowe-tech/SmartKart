@@ -102,7 +102,7 @@ class ArduinoDriver:
 
         # Fix Null-Overriding
         if vIN == self.speed or vIN is None:
-            self.speed = vOUT
+            self.speed
 
     def AdjustDirection(self, vOUT, vIN=None):
 
