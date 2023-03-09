@@ -70,3 +70,16 @@ gnome-display-properties
 FINALLY, REBOOT
 
 sudo reboot now
+
+THE FUCKING COMMAND WAS "startx" BECAUSE OF COURSE IT FUCKING WAS,
+NO DOCUMENTATION OR ANYTHING
+
+The command to fix gdm is:
+sudo systemctl set-default graphical.target
+
+---------------------------------------------------------------
+INSTALL OPENSSH
+
+sudo apt install openssh-server
+sudo systemctl status ssh
+sudo ufw allow ssh
