@@ -6,7 +6,6 @@ class Camera:
     def __init__(self, id: str, display=False, **window_size):
         self.display = display
 
-
         self.cap = cv2.VideoCapture(id, cv2.CAP_V4L2)
         self.frame = None
 
@@ -16,10 +15,10 @@ class Camera:
 
     def stream_camera(self):
         while True:
-            frame = cap.read()
-            
+            frame = self.cap.read()
+
             if frame is not None:
                 self.frame = frame
 
                 if self.display:
-
+                    pass
