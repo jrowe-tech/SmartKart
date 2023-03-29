@@ -1,0 +1,12 @@
+Current LERP Algorithm ->
+
+lerped = 4096 - int((x / 100) * 4095)
+pwm.setPWM(*, lerped, 0)
+
+TAKES 0-100 Duty-Cycle, Converts to 12-bit Resolution.
+Starts cycle at 4096 - x, ends at next cycle.
+
+Additional Inverted LERP Algorithm ->
+
+inv_lerp = int((x / 100) * 4095)
+pwm.setPWM(*, 0, inv_lerp)
